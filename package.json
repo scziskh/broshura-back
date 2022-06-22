@@ -1,4 +1,7 @@
 {
+  "name": "broshura-back",
+  "version": "0.1.0",
+  "main": "src/app.js",
   "devDependencies": {
     "@babel/core": "^7.17.10",
     "eslint": "^8.14.0",
@@ -7,6 +10,9 @@
     "husky": "^8.0.1",
     "lint": "^1.1.2",
     "prettier": "^2.6.2"
+  },
+  "scripts": {
+    "server": "src/app"
   },
   "dependencies": {
     "fastify": "^4.0.3"
