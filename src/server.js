@@ -1,17 +1,18 @@
-const fastify = require('fastify')({ logger: true });
+import fastify from 'fastify';
+import { config } from './config.js';
+import { app } from './app.js';
 
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  return 'Server';
-});
+const { host, port, logger } = config.server;
 
-// Run the server!
-const start = async () => {
+//async bootstrapping
+const start = async app => {
   try {
-    await fastify.listen({ port: 3000 });
+    const server = fastify({ logger });
+    server.register(app);
+    await server.listen({ port, host });
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }
 };
-start();
+start(app);

@@ -1,33 +1,22 @@
 {
-  "name": "broshura-back",
+  "name": "broshura-back-end",
   "version": "0.1.0",
-  "main": "src/app.js",
-  "devDependencies": {
-    "@babel/core": "^7.17.10",
-    "eslint": "^8.14.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "husky": "^8.0.1",
-    "lint": "^1.1.2",
-    "prettier": "^2.6.2"
-  },
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "server for broshura project",
+  "author": "Scziskh",
   "scripts": {
-    "server": "node src/server"
+    "start": "node src/server.js"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   },
   "dependencies": {
-    "fastify": "^4.0.3",
+    "@fastify/autoload": "^4.0.1",
+    "fastify": "^3.29.0",
     "fastify-plugin": "^3.0.1",
-    "knex": "^2.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.jsx": [
-      "npm run lint:fix",
-      "git add"
-    ]
+    "knex": "^2.0.0",
+    "pg": "^8.7.3"
   }
 }
