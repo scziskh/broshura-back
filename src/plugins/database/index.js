@@ -6,7 +6,10 @@ const database = async fastify => {
   const connection = knex({
     client: 'pg',
     connection: config.database,
-    pool: { min: 2, max: 10 },
+    pool: {
+      min: 2,
+      max: 10,
+    },
   });
   fastify.decorate('database', connection);
 };
