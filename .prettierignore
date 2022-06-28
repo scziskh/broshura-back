@@ -5,3 +5,4 @@
 ./.github
 ./build
 ./coverage
+.env
