@@ -4,7 +4,7 @@ export class PriceDao {
   }
 
   async getPaper() {
-    const paper = await this.database('paper').returning('*');
+    const paper = await this.database('papers').returning('*');
     return paper;
   }
 }
