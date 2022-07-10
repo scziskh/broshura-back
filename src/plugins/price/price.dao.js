@@ -23,7 +23,7 @@ export class PriceDao {
     await this.database('bind_types')
       .join('bind_adj', 'bind_types.id', 'bind_adj.bind_type_id')
       .then(data =>
-        data.map(data => (groupedData[data.bind_type] = data.cost)),
+        data.map(data => (groupedData[data.bind_type] = +data.cost)),
       );
 
     return groupedData;
@@ -42,8 +42,8 @@ export class PriceDao {
           }
           return {
             [data.bind_type]: groupedData[data.bind_type].push({
-              cost: data.cost,
-              thick: data.thick,
+              COST: +data.cost,
+              THICK: +data.thick,
             }),
           };
         }),
@@ -67,7 +67,7 @@ export class PriceDao {
               ...groupedData[data.format],
               [data.bind_type]: {
                 ...groupedData[data.format]?.[data.bind_type],
-                [data.orientation]: data.coef,
+                [data.orientation]: +data.coef,
               },
             },
           });
@@ -81,7 +81,7 @@ export class PriceDao {
 
     await this.database('print_coefs')
       .join('formats', 'formats.id', 'print_coefs.format_id')
-      .then(data => data.map(data => (groupedData[data.format] = data.coef)));
+      .then(data => data.map(data => (groupedData[data.format] = +data.coef)));
     return groupedData;
   }
 
@@ -91,7 +91,7 @@ export class PriceDao {
     await this.database('papers').then(data =>
       data.map(
         data =>
-          (groupedData[data.name] = { COST: data.cost, THICK: data.thick }),
+          (groupedData[data.name] = { COST: +data.cost, THICK: +data.thick }),
       ),
     );
     return groupedData;
@@ -103,7 +103,7 @@ export class PriceDao {
     await this.database('prints').then(data =>
       data.map(
         data =>
-          (groupedData[data.name] = { COST: data.cost, SIDES: data.sides }),
+          (groupedData[data.name] = { COST: +data.cost, SIDES: +data.sides }),
       ),
     );
     return groupedData;
@@ -116,9 +116,9 @@ export class PriceDao {
       data.map(
         data =>
           (groupedData[data.name] = {
-            COST: data.cost,
-            THICK: data.thick,
-            ADJ: data.adj,
+            COST: +data.cost,
+            THICK: +data.thick,
+            ADJ: +data.adj,
           }),
       ),
     );
@@ -131,8 +131,8 @@ export class PriceDao {
     await this.database('trim').then(
       data =>
         (groupedData = {
-          MIN_COST: data[0].min_cost,
-          COST: data[0].cost,
+          MIN_COST: +data[0].min_cost,
+          COST: +data[0].cost,
         }),
     );
     return groupedData;
@@ -145,9 +145,9 @@ export class PriceDao {
       data.map(
         data =>
           (groupedData[data.name] = {
-            COST: data.cost,
-            THICK: data.thick,
-            PRINT_COST: data.print_cost,
+            COST: +data.cost,
+            THICK: +data.thick,
+            PRINT_COST: +data.print_cost,
           }),
       ),
     );
@@ -161,9 +161,9 @@ export class PriceDao {
       data.map(
         data =>
           (groupedData[data.name] = {
-            FACTOR: data.factor,
-            DEGREE: data.degree,
-            MAX_COUNT: data.max_count,
+            FACTOR: +data.factor,
+            DEGREE: +data.degree,
+            MAX_COUNT: +data.max_count,
           }),
       ),
     );
