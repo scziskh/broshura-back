@@ -1,13 +1,13 @@
 create table if not exists bind_types
 (
     id smallserial primary key,
-    name varchar(16) not null unique
+    bind_type varchar(16) not null unique
 );
 
 create table if not exists bind_adj
 (
     id smallserial primary key,
-    bind_type_id smallint references bind_types (id),
+    bind_type_id smallint references bind_types (id) unique,
     cost numeric(5, 2) not null
 );
 
@@ -16,19 +16,19 @@ create table if not exists bind_sizes
     id smallserial primary key,
     bind_type_id smallint references bind_types (id),
     cost numeric(5, 2) not null,
-    thick smallint not null
+    thick int not null
 );
 
 create table if not exists formats
 (
     id smallserial primary key,
-    name varchar(2) not null unique
+    format varchar(2) not null unique
 );
 
 create table if not exists orientations
 (
     id smallserial primary key,
-    name varchar(16) not null unique
+    orientation varchar(16) not null unique
 );
 
 create table if not exists bind_coefs

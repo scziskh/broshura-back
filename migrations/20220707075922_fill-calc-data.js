@@ -27,7 +27,7 @@ export async function up(knex, Promise) {
   ];
 
   const bindTypesIds = await knex('bind_types')
-    .insert(bindTypesNames.map(bindTypeName => ({ name: bindTypeName })))
+    .insert(bindTypesNames.map(bindTypeName => ({ bind_type: bindTypeName })))
     .returning('id');
 
   const bindTypesMap = bindTypesNames.reduce((accumulator, name, index) => {
@@ -39,31 +39,31 @@ export async function up(knex, Promise) {
   await knex('bind_adj').insert([
     {
       bind_type_id: bindTypesMap.STAPLES,
-      cost: 1,
+      cost: 20,
     },
     {
       bind_type_id: bindTypesMap.METAL_SPRING,
-      cost: 2,
+      cost: 0,
     },
     {
       bind_type_id: bindTypesMap.PLASTIC_SPRING,
-      cost: 3,
+      cost: 0,
     },
     {
       bind_type_id: bindTypesMap.THERMOBINDER,
-      cost: 4,
+      cost: 150,
     },
     {
       bind_type_id: bindTypesMap.FOLDER,
-      cost: 5,
+      cost: 0,
     },
     {
       bind_type_id: bindTypesMap.CANAL,
-      cost: 6,
+      cost: 0,
     },
     {
       bind_type_id: bindTypesMap.RING,
-      cost: 7,
+      cost: 0,
     },
   ]);
 
@@ -283,7 +283,7 @@ export async function up(knex, Promise) {
   const formats = ['A3', 'A4', 'A5', 'A6', 'A7'];
 
   const formatsIds = await knex('formats')
-    .insert(formats.map(format => ({ name: format })))
+    .insert(formats.map(format => ({ format })))
     .returning('id');
 
   const formatsMap = formats.reduce((accumulator, name, index) => {
@@ -295,7 +295,7 @@ export async function up(knex, Promise) {
   const orientations = ['LANDSCAPE', 'PORTRAIT'];
 
   const orientationsIds = await knex('orientations')
-    .insert(orientations.map(orientation => ({ name: orientation })))
+    .insert(orientations.map(orientation => ({ orientation })))
     .returning('id');
 
   const orientationsMap = orientations.reduce((accumulator, name, index) => {
@@ -627,13 +627,13 @@ export async function up(knex, Promise) {
   //separators
   await knex('separators').insert([
     {
-      name: 'small',
+      name: 'SMALL',
       cost: 2,
       print_cost: 2,
       thick: 20,
     },
     {
-      name: 'large',
+      name: 'LARGE',
       cost: 5,
       print_cost: 5,
       thick: 20,

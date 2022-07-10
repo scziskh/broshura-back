@@ -14,5 +14,6 @@ export const price = async fastify => {
 
 export default fp(price, {
   name: 'price',
+  decorators: ['priceService'],
   dependencies: ['database'],
 });
