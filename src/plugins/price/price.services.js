@@ -22,11 +22,32 @@ export class PriceService {
   }
 
   async getBindCoefs() {
-    const data = await this.#priceDao.getBindCoefs();
-    if (!data) {
+    const bindCoefs = await this.#priceDao.getBindCoefs();
+    if (!bindCoefs) {
       throw new Error('Data of bindCoefs is undefined');
     }
-    return data;
+    const defaultDict = defaultValue =>
+      new Proxy(
+        {},
+        {
+          get(target, prop) {
+            if (target[prop]) {
+              return target[prop];
+            }
+            return (target[prop] = defaultValue());
+          },
+        },
+      );
+
+    const groupedData = defaultDict(() => defaultDict(() => ({})));
+
+    for (const bindCoef of bindCoefs) {
+      groupedData[bindCoef.format][bindCoef.bind_type][bindCoef.orientation] =
+        +bindCoef.coef;
+    }
+    console.log(Object.getOwnPropertyNames(groupedData));
+
+    return groupedData;
   }
 
   async getPrintCoefs() {

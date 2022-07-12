@@ -53,28 +53,20 @@ export class PriceDao {
   }
 
   async getBindCoefs() {
-    let groupedData = {};
-
-    await this.database('bind_coefs')
+    return await this.database('bind_coefs')
       .join('bind_types', 'bind_types.id', 'bind_coefs.bind_type_id')
       .join('formats', 'formats.id', 'bind_coefs.format_id')
-      .join('orientations', 'orientations.id', 'bind_coefs.orientation_id')
-      .then(data =>
-        data.map(data => {
-          return (groupedData = {
-            ...groupedData,
-            [data.format]: {
-              ...groupedData[data.format],
-              [data.bind_type]: {
-                ...groupedData[data.format]?.[data.bind_type],
-                [data.orientation]: +data.coef,
-              },
-            },
-          });
-        }),
-      );
-    return groupedData;
+      .join('orientations', 'orientations.id', 'bind_coefs.orientation_id');
   }
+
+  //   [data.format]: {
+  //     ...groupedData[data.format],
+  //     [data.bind_type]: {
+  //       ...groupedData[data.format]?.[data.bind_type],
+  //       [data.orientation]: +data.coef,
+  //     },
+  //   },
+  // };
 
   async getPrintCoefs() {
     const groupedData = {};
