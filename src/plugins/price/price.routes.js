@@ -7,6 +7,7 @@ export const priceRoutes = async fastify => {
 
     handler: async (_, reply) => {
       const data = await priceService.getCalculatorData();
+
       reply.code(200).send(data);
     },
   });

@@ -1,3 +1,6 @@
+import defaultDict from '../../assets/default-dict.js';
+import { infiniteDict } from '../../assets/default-dict.js';
+
 export class PriceService {
   #priceDao;
 
@@ -7,6 +10,7 @@ export class PriceService {
 
   async getBindAdj() {
     const data = await this.#priceDao.getBindAdj();
+
     if (!data) {
       throw new Error('Data of bindAdj is undefined');
     }
@@ -26,26 +30,13 @@ export class PriceService {
     if (!bindCoefs) {
       throw new Error('Data of bindCoefs is undefined');
     }
-    const defaultDict = defaultValue =>
-      new Proxy(
-        {},
-        {
-          get(target, prop) {
-            if (target[prop]) {
-              return target[prop];
-            }
-            return (target[prop] = defaultValue());
-          },
-        },
-      );
 
-    const groupedData = defaultDict(() => defaultDict(() => ({})));
-
+    const groupedData = infiniteDict();
+    
     for (const bindCoef of bindCoefs) {
       groupedData[bindCoef.format][bindCoef.bind_type][bindCoef.orientation] =
         +bindCoef.coef;
     }
-    console.log(Object.getOwnPropertyNames(groupedData));
 
     return groupedData;
   }
@@ -55,6 +46,7 @@ export class PriceService {
     if (!data) {
       throw new Error('Data of printCoefs is undefined');
     }
+
     return data;
   }
 
