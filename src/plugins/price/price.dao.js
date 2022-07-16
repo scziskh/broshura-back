@@ -3,53 +3,18 @@ export class PriceDao {
     this.database = database;
   }
 
-  // #bind_types#
-  // bind_adj
-  // bind_sizes
-  // #formats#
-  // #orientations#
-  // print_coefs
-  // bind_coefs
-  // papers
-  // prints
-  // lamins
-  // trim
-  // separators
-  // count_coefs
-
   async getBindAdj() {
-    const groupedData = {};
-
-    await this.database('bind_types')
-      .join('bind_adj', 'bind_types.id', 'bind_adj.bind_type_id')
-      .then(data =>
-        data.map(data => (groupedData[data.bind_type] = +data.cost)),
-      );
-
-    return groupedData;
+    return await this.database('bind_types').join(
+      'bind_adj',
+      'bind_types.id',
+      'bind_adj.bind_type_id',
+    );
   }
 
   async getBindSizes() {
-    const groupedData = {};
-
-    await this.database('bind_types')
+    return await this.database('bind_types')
       .join('bind_sizes', 'bind_types.id', 'bind_sizes.bind_type_id')
-      .orderBy('thick')
-      .then(data =>
-        data.map(data => {
-          if (!groupedData[data.bind_type]) {
-            groupedData[data.bind_type] = [];
-          }
-          return {
-            [data.bind_type]: groupedData[data.bind_type].push({
-              COST: +data.cost,
-              THICK: +data.thick,
-            }),
-          };
-        }),
-      );
-
-    return groupedData;
+      .orderBy('thick');
   }
 
   async getBindCoefs() {
@@ -59,106 +24,35 @@ export class PriceDao {
       .join('orientations', 'orientations.id', 'bind_coefs.orientation_id');
   }
 
-  //   [data.format]: {
-  //     ...groupedData[data.format],
-  //     [data.bind_type]: {
-  //       ...groupedData[data.format]?.[data.bind_type],
-  //       [data.orientation]: +data.coef,
-  //     },
-  //   },
-  // };
-
   async getPrintCoefs() {
-    const groupedData = {};
-
-    await this.database('print_coefs')
-      .join('formats', 'formats.id', 'print_coefs.format_id')
-      .then(data => data.map(data => (groupedData[data.format] = +data.coef)));
-    return groupedData;
+    return await this.database('print_coefs').join(
+      'formats',
+      'formats.id',
+      'print_coefs.format_id',
+    );
   }
 
   async getPapers() {
-    const groupedData = {};
-
-    await this.database('papers').then(data =>
-      data.map(
-        data =>
-          (groupedData[data.name] = { COST: +data.cost, THICK: +data.thick }),
-      ),
-    );
-    return groupedData;
+    return await this.database('papers');
   }
 
   async getPrints() {
-    const groupedData = {};
-
-    await this.database('prints').then(data =>
-      data.map(
-        data =>
-          (groupedData[data.name] = { COST: +data.cost, SIDES: +data.sides }),
-      ),
-    );
-    return groupedData;
+    return await this.database('prints');
   }
 
   async getLamins() {
-    const groupedData = {};
-
-    await this.database('lamins').then(data =>
-      data.map(
-        data =>
-          (groupedData[data.name] = {
-            COST: +data.cost,
-            THICK: +data.thick,
-            ADJ: +data.adj,
-          }),
-      ),
-    );
-    return groupedData;
+    return await this.database('lamins');
   }
 
   async getTrim() {
-    let groupedData = {};
-
-    await this.database('trim').then(
-      data =>
-        (groupedData = {
-          MIN_COST: +data[0].min_cost,
-          COST: +data[0].cost,
-        }),
-    );
-    return groupedData;
+    return await this.database('trim');
   }
 
   async getSeparators() {
-    const groupedData = {};
-
-    await this.database('separators').then(data =>
-      data.map(
-        data =>
-          (groupedData[data.name] = {
-            COST: +data.cost,
-            THICK: +data.thick,
-            PRINT_COST: +data.print_cost,
-          }),
-      ),
-    );
-    return groupedData;
+    return await this.database('separators');
   }
 
   async getCountCoefs() {
-    const groupedData = {};
-
-    await this.database('count_coefs').then(data =>
-      data.map(
-        data =>
-          (groupedData[data.name] = {
-            FACTOR: +data.factor,
-            DEGREE: +data.degree,
-            MAX_COUNT: +data.max_count,
-          }),
-      ),
-    );
-    return groupedData;
+    return await this.database('count_coefs');
   }
 }

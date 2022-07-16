@@ -14,5 +14,3 @@ export const priceRoutes = async fastify => {
 };
 
 // Schema
-// https://stackoverflow.com/questions/45569216/knex-postgres-returns-strings-for-numeric-decimal-values
-// service one method

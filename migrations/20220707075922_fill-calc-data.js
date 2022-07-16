@@ -17,13 +17,13 @@ import Knex from 'knex';
 export async function up(knex, Promise) {
   //bind_types
   const bindTypesNames = [
-    'STAPLES',
-    'METAL_SPRING',
-    'PLASTIC_SPRING',
-    'THERMOBINDER',
-    'FOLDER',
-    'CANAL',
-    'RING',
+    'staples',
+    'metal_spring',
+    'plastic_spring',
+    'thermobinder',
+    'folder',
+    'canal',
+    'ring',
   ];
 
   const bindTypesIds = await knex('bind_types')
@@ -38,31 +38,31 @@ export async function up(knex, Promise) {
   //bind_adj
   await knex('bind_adj').insert([
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       cost: 20,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 0,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 0,
     },
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       cost: 150,
     },
     {
-      bind_type_id: bindTypesMap.FOLDER,
+      bind_type_id: bindTypesMap.folder,
       cost: 0,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 0,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       cost: 0,
     },
   ]);
@@ -71,209 +71,209 @@ export async function up(knex, Promise) {
   await knex('bind_sizes').insert([
     //STAPLES
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       cost: 2.75,
       thick: 2400,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       cost: 3.25,
       thick: 4000,
     },
 
     //METAL_SPRING
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 27,
       thick: 6000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 27,
       thick: 7500,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 32,
       thick: 9000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 32,
       thick: 10500,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 37,
       thick: 12000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 42,
       thick: 13500,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 52,
       thick: 16000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 52,
       thick: 19000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 67,
       thick: 22000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 67,
       thick: 25000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 77,
       thick: 28000,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       cost: 77,
       thick: 28000,
     },
 
     //PLASTIC_SPRING
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 22,
       thick: 4000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 22,
       thick: 5500,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 22,
       thick: 8000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 27,
       thick: 10000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 27,
       thick: 12000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 27,
       thick: 15000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 32,
       thick: 18000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 32,
       thick: 21000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 42,
       thick: 24000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 42,
       thick: 28000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 52,
       thick: 34000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 52,
       thick: 42000,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       cost: 62,
       thick: 51000,
     },
 
     //THERMOBINDER
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       cost: 8,
       thick: 20000,
     },
 
     //FOLDER
     {
-      bind_type_id: bindTypesMap.FOLDER,
+      bind_type_id: bindTypesMap.folder,
       cost: 10,
       thick: 10000,
     },
     {
-      bind_type_id: bindTypesMap.FOLDER,
+      bind_type_id: bindTypesMap.folder,
       cost: 20,
       thick: 25000,
     },
     {
-      bind_type_id: bindTypesMap.FOLDER,
+      bind_type_id: bindTypesMap.folder,
       cost: 30,
       thick: 50000,
     },
 
     //CANAL
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 120,
       thick: 12500,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 140,
       thick: 14500,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 150,
       thick: 16500,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 160,
       thick: 18500,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 170,
       thick: 20500,
     },
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       cost: 180,
       thick: 22500,
     },
 
     //RING
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       cost: 5,
       thick: 20000,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       cost: 10,
       thick: 50000,
     },
@@ -292,7 +292,7 @@ export async function up(knex, Promise) {
   }, {});
 
   //orientations
-  const orientations = ['LANDSCAPE', 'PORTRAIT'];
+  const orientations = ['landscape', 'portrait'];
 
   const orientationsIds = await knex('orientations')
     .insert(orientations.map(orientation => ({ orientation })))
@@ -331,294 +331,294 @@ export async function up(knex, Promise) {
   await knex('bind_coefs').insert([
     //STAPLES
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.STAPLES,
+      bind_type_id: bindTypesMap.staples,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
 
     //METAL_SPRING
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A3,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1.6,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A3,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1.3,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.METAL_SPRING,
+      bind_type_id: bindTypesMap.metal_spring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
 
     //PLASTIC_SPRING
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A3,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1.3,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1.2,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1.2,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.PLASTIC_SPRING,
+      bind_type_id: bindTypesMap.plastic_spring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
 
     //THERMOBINDER
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.THERMOBINDER,
+      bind_type_id: bindTypesMap.thermobinder,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
 
     //CANAL
     {
-      bind_type_id: bindTypesMap.CANAL,
+      bind_type_id: bindTypesMap.canal,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
 
     //RING
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A3,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A3,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A4,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A5,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A6,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.PORTRAIT,
+      orientation_id: orientationsMap.portrait,
       coef: 1,
     },
     {
-      bind_type_id: bindTypesMap.RING,
+      bind_type_id: bindTypesMap.ring,
       format_id: formatsMap.A7,
-      orientation_id: orientationsMap.LANDSCAPE,
+      orientation_id: orientationsMap.landscape,
       coef: 1,
     },
   ]);
 
   //papers
   await knex('papers').insert([
-    { name: 'NO_PAPER', cost: 0, thick: 0 },
-    { name: 'OFFSET_80', cost: 1.0, thick: 100 },
-    { name: 'COATED_120', cost: 2.0, thick: 130 },
-    { name: 'COATED_160', cost: 2.5, thick: 180 },
-    { name: 'COATED_300', cost: 7.0, thick: 400 },
-    { name: 'UNCOATED_150', cost: 1.5, thick: 130 },
-    { name: 'UNCOATED_170', cost: 1.7, thick: 140 },
-    { name: 'UNCOATED_200', cost: 2.0, thick: 190 },
-    { name: 'UNCOATED_250', cost: 2.5, thick: 230 },
-    { name: 'UNCOATED_300', cost: 3.0, thick: 310 },
+    { paper: 'no_paper', cost: 0, thick: 0 },
+    { paper: 'offset_80', cost: 1.0, thick: 100 },
+    { paper: 'coated_120', cost: 2.0, thick: 130 },
+    { paper: 'coated_160', cost: 2.5, thick: 180 },
+    { paper: 'coated_300', cost: 7.0, thick: 400 },
+    { paper: 'uncoated_150', cost: 1.5, thick: 130 },
+    { paper: 'uncoated_170', cost: 1.7, thick: 140 },
+    { paper: 'uncoated_200', cost: 2.0, thick: 190 },
+    { paper: 'uncoated_250', cost: 2.5, thick: 230 },
+    { paper: 'uncoated_300', cost: 3.0, thick: 310 },
   ]);
 
   //prints
   const prints = [
-    { name: 'NO_PRINT', cost: 0, sides: 0 },
-    { name: 'ONE_SIDED_GRAYSCALE', cost: 5.0, sides: 1 },
-    { name: 'TWO_SIDED_GRAYSCALE', cost: 5.0, sides: 2 },
-    { name: 'ONE_SIDED_COLOR', cost: 15.0, sides: 1 },
-    { name: 'TWO_SIDED_COLOR', cost: 15.0, sides: 2 },
+    { print: 'no_print', cost: 0, sides: 0 },
+    { print: 'one_sided_grayscale', cost: 5.0, sides: 1 },
+    { print: 'two_sided_grayscale', cost: 5.0, sides: 2 },
+    { print: 'one_sided_color', cost: 15.0, sides: 1 },
+    { print: 'two_sided_color', cost: 15.0, sides: 2 },
   ];
   await knex('prints').insert(prints);
 
   //lamins
   await knex('lamins').insert([
-    { name: 'NO_LAMIN', cost: 0, adj: 0, thick: 0 },
-    { name: 'ONE_SIDED_MATTE', cost: 8.5, adj: 17, thick: 24 },
-    { name: 'TWO_SIDED_MATTE', cost: 10, adj: 20, thick: 48 },
-    { name: 'ONE_SIDED_GLOSSY', cost: 8.2, adj: 16.4, thick: 27 },
-    { name: 'TWO_SIDED_GLOSSY', cost: 9.8, adj: 19.6, thick: 54 },
+    { lamin: 'no_lamin', cost: 0, adj: 0, thick: 0 },
+    { lamin: 'one_sided_matte', cost: 8.5, adj: 17, thick: 24 },
+    { lamin: 'two_sided_matte', cost: 10, adj: 20, thick: 48 },
+    { lamin: 'one_sided_glossy', cost: 8.2, adj: 16.4, thick: 27 },
+    { lamin: 'two_sided_glossy', cost: 9.8, adj: 19.6, thick: 54 },
   ]);
 
   //trim
@@ -627,13 +627,13 @@ export async function up(knex, Promise) {
   //separators
   await knex('separators').insert([
     {
-      name: 'SMALL',
+      separator: 'small',
       cost: 2,
       print_cost: 2,
       thick: 20,
     },
     {
-      name: 'LARGE',
+      separator: 'large',
       cost: 5,
       print_cost: 5,
       thick: 20,
@@ -643,37 +643,37 @@ export async function up(knex, Promise) {
   //count_coefs
   await knex('count_coefs').insert([
     {
-      name: 'ONE_SIDED_GRAYSCALE',
+      name: 'one_sided_grayscale',
       factor: 2.2,
       degree: -0.3,
       max_count: 1000,
     },
     {
-      name: 'TWO_SIDED_GRAYSCALE',
+      name: 'two_sided_grayscale',
       factor: 2.2,
       degree: -0.3,
       max_count: 1000,
     },
     {
-      name: 'ONE_SIDED_COLOR',
+      name: 'one_sided_color',
       factor: 1.6,
       degree: -0.2,
       max_count: 1000,
     },
     {
-      name: 'TWO_SIDED_COLOR',
+      name: 'two_sided_color',
       factor: 1.6,
       degree: -0.2,
       max_count: 1000,
     },
     {
-      name: 'LAMIN',
+      name: 'lamin',
       factor: 1.8,
       degree: -0.2,
       max_count: 500,
     },
     {
-      name: 'TRIM',
+      name: 'trim',
       factor: 1,
       degree: -0.1,
       max_count: 100,

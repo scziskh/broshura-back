@@ -1,5 +1,4 @@
-import defaultDict from '../../assets/default-dict.js';
-import { infiniteDict } from '../../assets/default-dict.js';
+import { defaultDict, freezeDefaultDict } from '../../helpers/default-dict.js';
 
 export class PriceService {
   #priceDao;
@@ -8,20 +7,39 @@ export class PriceService {
     this.#priceDao = priceDao;
   }
 
+  //price of binding adjustment
   async getBindAdj() {
-    const data = await this.#priceDao.getBindAdj();
+    const bindAdjs = await this.#priceDao.getBindAdj();
 
-    if (!data) {
+    if (!bindAdjs) {
       throw new Error('Data of bindAdj is undefined');
     }
+
+    const data = bindAdjs.reduce((accumulator, { bind_type, cost }) => {
+      accumulator[bind_type] = cost;
+      return accumulator;
+    }, {});
     return data;
   }
 
+  //price of binding instead of thickness
   async getBindSizes() {
-    const data = await this.#priceDao.getBindSizes();
-    if (!data) {
+    const bindSizes = await this.#priceDao.getBindSizes();
+    if (!bindSizes) {
       throw new Error('Data of bindSizes is undefined');
     }
+
+    const data = defaultDict(() => []);
+
+    for (const bindSize of bindSizes) {
+      const cost = bindSize.cost;
+      const thick = bindSize.thick;
+
+      data[bindSize.bind_type].push({ cost, thick });
+    }
+
+    freezeDefaultDict(data);
+
     return data;
   }
 
@@ -31,85 +49,126 @@ export class PriceService {
       throw new Error('Data of bindCoefs is undefined');
     }
 
-    const groupedData = infiniteDict();
-    
+    const data = defaultDict(() => defaultDict(() => ({})));
+
     for (const bindCoef of bindCoefs) {
-      groupedData[bindCoef.format][bindCoef.bind_type][bindCoef.orientation] =
-        +bindCoef.coef;
+      data[bindCoef.format][bindCoef.bind_type][bindCoef.orientation] =
+        bindCoef.coef;
     }
 
-    return groupedData;
+    freezeDefaultDict(data);
+
+    return data;
   }
 
   async getPrintCoefs() {
-    const data = await this.#priceDao.getPrintCoefs();
-    if (!data) {
+    const printCoefs = await this.#priceDao.getPrintCoefs();
+    if (!printCoefs) {
       throw new Error('Data of printCoefs is undefined');
     }
-
+    const data = printCoefs.reduce((accumulator, { format, coef }) => {
+      accumulator[format] = coef;
+      return accumulator;
+    }, {});
     return data;
   }
 
   async getPapers() {
-    const data = await this.#priceDao.getPapers();
-    if (!data) {
+    const papers = await this.#priceDao.getPapers();
+    if (!papers) {
       throw new Error('Data of papers is undefined');
     }
+    const data = papers.reduce((accumulator, { paper, cost, thick }) => {
+      accumulator[paper] = { cost, thick };
+      return accumulator;
+    }, {});
     return data;
   }
 
   async getPrints() {
-    const data = await this.#priceDao.getPrints();
-    if (!data) {
+    const prints = await this.#priceDao.getPrints();
+    if (!prints) {
       throw new Error('Data of prints is undefined');
     }
+    const data = prints.reduce((accumulator, { print, cost, sides }) => {
+      accumulator[print] = { cost, sides };
+      return accumulator;
+    }, {});
+
     return data;
   }
 
   async getLamins() {
-    const data = await this.#priceDao.getLamins();
-    if (!data) {
+    const lamins = await this.#priceDao.getLamins();
+    if (!lamins) {
       throw new Error('Data of prints is undefined');
     }
+
+    const data = lamins.reduce((accumulator, { lamin, cost, thick, adj }) => {
+      accumulator[lamin] = { cost, thick, adj };
+      return accumulator;
+    }, {});
     return data;
   }
 
   async getTrim() {
-    const data = await this.#priceDao.getTrim();
-    if (!data) {
+    const trim = await this.#priceDao.getTrim();
+    if (!trim) {
       throw new Error('Data of prints is undefined');
     }
+
+    const cost = trim[0].cost;
+    const min_cost = trim[0].min_cost;
+
+    const data = { min_cost, cost };
+
     return data;
   }
 
   async getSeparators() {
-    const data = await this.#priceDao.getSeparators();
-    if (!data) {
+    const separators = await this.#priceDao.getSeparators();
+    if (!separators) {
       throw new Error('Data of prints is undefined');
     }
+
+    const data = separators.reduce(
+      (accumulator, { separator, cost, thick, print_cost }) => {
+        accumulator[separator] = { cost, thick, print_cost };
+        return accumulator;
+      },
+      {},
+    );
+
     return data;
   }
 
   async getCountCoefs() {
-    const data = await this.#priceDao.getCountCoefs();
-    if (!data) {
+    const countCoefs = await this.#priceDao.getCountCoefs();
+    if (!countCoefs) {
       throw new Error('Data of prints is undefined');
     }
+    const data = countCoefs.reduce(
+      (accumulator, { name, factor, degree, max_count }) => {
+        accumulator[name] = { factor, degree, max_count };
+        return accumulator;
+      },
+      {},
+    );
     return data;
   }
 
   async getCalculatorData() {
     const data = {
-      BIND_ADJ: await this.getBindAdj(),
-      BIND_SIZES: await this.getBindSizes(),
-      BIND_COEFS: await this.getBindCoefs(),
-      PRINT_COEFS: await this.getPrintCoefs(),
-      COUNT_COEFS: await this.getCountCoefs(),
-      PAPERS: await this.getPapers(),
-      PRINTS: await this.getPrints(),
-      LAMINS: await this.getLamins(),
-      TRIM: await this.getTrim(),
-      SEPARATORS: await this.getSeparators(),
+      bind_adj: await this.getBindAdj(),
+      bind_sizes: await this.getBindSizes(),
+      bind_coefs: await this.getBindCoefs(),
+      print_coefs: await this.getPrintCoefs(),
+      count_coefs: await this.getCountCoefs(),
+      papers: await this.getPapers(),
+      prints: await this.getPrints(),
+      lamins: await this.getLamins(),
+      trim: await this.getTrim(),
+      separators: await this.getSeparators(),
     };
     if (!data) {
       throw new Error('Calculator Data is undefined');

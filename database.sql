@@ -49,7 +49,7 @@ create table if not exists print_coefs
 create table if not exists papers
 (
     id smallserial primary key,
-    name varchar(24) not null unique,
+    paper varchar(24) not null unique,
     cost numeric(5, 2) not null,
     thick smallint not null
 );
@@ -57,7 +57,7 @@ create table if not exists papers
 create table if not exists prints
 (
     id serial primary key,
-    name varchar(24) not null unique,
+    print varchar(24) not null unique,
     cost numeric(5, 2) not null,
     sides smallint not null
 );
@@ -65,7 +65,7 @@ create table if not exists prints
 create table if not exists lamins
 (
     id serial primary key,
-    name varchar(24) not null unique,
+    lamin varchar(24) not null unique,
     cost numeric(5, 2) not null,
     adj numeric(5, 2) not null,
     thick smallint not null
@@ -81,7 +81,7 @@ create table if not exists trim
 create table if not exists separators
 (
     id serial primary key,
-    name varchar(8) not null unique,
+    separator varchar(8) not null unique,
     cost numeric(5, 2) not null,
     print_cost numeric(5, 2) not null,
     thick smallint not null
