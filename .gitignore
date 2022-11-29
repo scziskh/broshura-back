@@ -13,3 +13,5 @@ npm-debug.log*
 .vscode
 
 .env
+
+/src/plugins/template
