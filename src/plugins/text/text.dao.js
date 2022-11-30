@@ -3,11 +3,13 @@ export class TextDao {
     this.database = database;
   }
 
-  async getTextData() {
-    return await this.database('text_content').join(
-      'text_groups',
-      'text_groups.id',
-      'text_content.group_id',
-    );
+  async getGroupId(group) {
+    return this.database('text_groups').where('name', group);
+  }
+
+  async getTextData(groupId) {
+    return await this.database('text_groups')
+      .join('text_content', 'text_content.group_id', 'text_groups.id')
+      .where('group_id', groupId);
   }
 }

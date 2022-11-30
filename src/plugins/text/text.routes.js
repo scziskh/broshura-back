@@ -3,9 +3,9 @@ export const textRoutes = async fastify => {
 
   fastify.route({
     method: 'GET',
-    url: '/db/text-data',
-    handler: async (_, reply) => {
-      const data = await textService.getTextData();
+    url: '/db/text-data/:lang/:group',
+    handler: async (request, reply) => {
+      const data = await textService.getTextData(request.params);
       reply.code(200).send(data);
     },
   });
